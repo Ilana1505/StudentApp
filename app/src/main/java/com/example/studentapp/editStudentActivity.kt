@@ -34,7 +34,6 @@ class editStudentActivity : AppCompatActivity() {
             addressInput.setText(student.address)
             checkBox.isChecked = student.isChecked
 
-            // שמירת שינויים
             saveButton.setOnClickListener {
                 student.name = nameInput.text.toString()
                 student.id = idInput.text.toString()
@@ -42,26 +41,26 @@ class editStudentActivity : AppCompatActivity() {
                 student.address = addressInput.text.toString()
                 student.isChecked = checkBox.isChecked
 
-                // מעבר חזרה למסך הראשי
+                // מעבר למסך הראשי לאחר שמירת השינויים
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
             }
 
-            // מחיקת סטודנט
             deleteButton.setOnClickListener {
+                // מחיקת הסטודנט
                 studentRepository.deleteStudent(student)
 
-                // מעבר חזרה למסך הראשי לאחר מחיקה
+                // מעבר למסך הראשי לאחר מחיקת הסטודנט
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
-
             }
 
             cancelButton.setOnClickListener {
+                // אם המשתמש לחץ על cancel, נעבור למסך פרטי הסטודנט
                 val intent = Intent(this, studentDetailsActivity::class.java)
                 intent.putExtra("STUDENT_ID", student.id)
                 startActivity(intent)

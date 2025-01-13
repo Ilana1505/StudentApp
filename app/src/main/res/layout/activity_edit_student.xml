@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="140dp"
-        android:layout_height="115dp"
+        android:layout_width="369dp"
+        android:layout_height="132dp"
         app:srcCompat="@drawable/student" />
 
     <EditText
@@ -38,39 +38,39 @@
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
-        android:layout_height="218dp"
+        android:layout_height="122dp"
         android:text="Checked" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="117dp"
         android:layout_marginTop="16dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="#00FF0D"
+            android:backgroundTint="#009688"
             android:text="Save" />
 
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
             android:layout_marginEnd="8dp"
             android:backgroundTint="@android:color/holo_red_light"
+            android:text="Delete"
             android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
             android:backgroundTint="@android:color/darker_gray"
+            android:text="Cancel"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </LinearLayout>

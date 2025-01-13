@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="128dp"
-        android:layout_height="125dp"
+        android:layout_width="369dp"
+        android:layout_height="132dp"
         app:srcCompat="@drawable/student" />
 
     <TextView
@@ -43,7 +43,7 @@
     <CheckBox
         android:id="@+id/detailsCheckBox"
         android:layout_width="wrap_content"
-        android:layout_height="267dp"
+        android:layout_height="122dp"
         android:clickable="false"
         android:text="Checked" />
 
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#072AFF"
+        android:backgroundTint="#FF00F3"
         android:text="Edit" />
 
 </LinearLayout>

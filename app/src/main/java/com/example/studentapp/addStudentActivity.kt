@@ -24,7 +24,6 @@ class addStudentActivity : AppCompatActivity() {
         val saveButton = findViewById<Button>(R.id.saveButton)
         val cancelButton = findViewById<Button>(R.id.deleteButton)
 
-
         saveButton.setOnClickListener {
             val name = nameInput.text.toString().trim()
             val id = idInput.text.toString().trim()
@@ -32,23 +31,22 @@ class addStudentActivity : AppCompatActivity() {
             val address = addressInput.text.toString().trim()
             val isChecked = checkBox.isChecked
 
+            // אם כל השדות מלאים
             if (name.isNotEmpty() && id.isNotEmpty() && phone.isNotEmpty() && address.isNotEmpty()) {
-                // שמירת סטודנט חדש
                 studentRepository.addStudent(Student(id, name, phone, address, isChecked))
                 Toast.makeText(this, "Student added successfully!", Toast.LENGTH_SHORT).show()
-                finish() // חזרה למסך הראשי
+                finish()  // סיום הפעולה ויציאה מהמסך הנוכחי
             } else {
-                // הצגת הודעה על שדות ריקים
                 Toast.makeText(this, "All fields must be filled!", Toast.LENGTH_SHORT).show()
             }
         }
 
-
         cancelButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            // חזרה למסך הראשי
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-            finish()
+            finish()  // סיום הפעולה ויציאה מהמסך הנוכחי
         }
     }
 }
