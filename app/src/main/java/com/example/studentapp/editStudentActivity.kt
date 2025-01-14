@@ -15,9 +15,12 @@ class editStudentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_student)
 
         val studentId = intent.getStringExtra("STUDENT_ID")
+
+        // שליפת פרטי הסטודנט מתוך המאגר
         val student = studentRepository.getStudentById(studentId)
 
         if (student != null) {
+
             val nameInput = findViewById<EditText>(R.id.nameInput)
             val idInput = findViewById<EditText>(R.id.idInput)
             val phoneInput = findViewById<EditText>(R.id.phoneInput)
@@ -27,7 +30,7 @@ class editStudentActivity : AppCompatActivity() {
             val deleteButton = findViewById<Button>(R.id.deleteButton)
             val cancelButton = findViewById<Button>(R.id.cancelButton)
 
-            // הצגת המידע הנוכחי
+            // הצגת המידע הנוכחי של הסטודנט
             nameInput.setText(student.name)
             idInput.setText(student.id)
             phoneInput.setText(student.phone)
@@ -35,37 +38,38 @@ class editStudentActivity : AppCompatActivity() {
             checkBox.isChecked = student.isChecked
 
             saveButton.setOnClickListener {
+                // עדכון פרטי הסטודנט על פי הערכים שהוזנו
                 student.name = nameInput.text.toString()
                 student.id = idInput.text.toString()
                 student.phone = phoneInput.text.toString()
                 student.address = addressInput.text.toString()
                 student.isChecked = checkBox.isChecked
 
-                // מעבר למסך הראשי לאחר שמירת השינויים
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
-                finish()
+                finish()  // סיום הפעולה על מנת להפסיק את פעילות העריכה
             }
 
             deleteButton.setOnClickListener {
-                // מחיקת הסטודנט
+                // מחיקת הסטודנט מתוך המאגר
                 studentRepository.deleteStudent(student)
 
-                // מעבר למסך הראשי לאחר מחיקת הסטודנט
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
-                finish()
+                finish()  // סיום הפעולה לאחר מחיקת הסטודנט
             }
 
+            // פעולה כשנלחץ על כפתור "ביטול"
             cancelButton.setOnClickListener {
-                // אם המשתמש לחץ על cancel, נעבור למסך פרטי הסטודנט
                 val intent = Intent(this, studentDetailsActivity::class.java)
                 intent.putExtra("STUDENT_ID", student.id)
                 startActivity(intent)
-                finish()
+                finish()  // סיום הפעולה וחזרה למסך פרטי הסטודנט
             }
         }
     }
 }
+
+

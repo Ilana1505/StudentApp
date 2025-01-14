@@ -31,22 +31,24 @@ class addStudentActivity : AppCompatActivity() {
             val address = addressInput.text.toString().trim()
             val isChecked = checkBox.isChecked
 
-            // אם כל השדות מלאים
             if (name.isNotEmpty() && id.isNotEmpty() && phone.isNotEmpty() && address.isNotEmpty()) {
+                // הוספת הסטודנט החדש לרשימה
                 studentRepository.addStudent(Student(id, name, phone, address, isChecked))
+                // הצגת הודעת הצלחה
                 Toast.makeText(this, "Student added successfully!", Toast.LENGTH_SHORT).show()
-                finish()  // סיום הפעולה ויציאה מהמסך הנוכחי
+                finish()
             } else {
+                // הצגת הודעה אם לא מולאו כל השדות
                 Toast.makeText(this, "All fields must be filled!", Toast.LENGTH_SHORT).show()
             }
         }
 
         cancelButton.setOnClickListener {
+            // אם המשתמש לוחץ על ביטול, נעבור למסך הראשי
             val intent = Intent(this, MainActivity::class.java)
-            // חזרה למסך הראשי
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-            finish()  // סיום הפעולה ויציאה מהמסך הנוכחי
+            finish()
         }
     }
 }

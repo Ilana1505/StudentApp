@@ -15,23 +15,26 @@ class studentDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_student_details)
 
         val studentId = intent.getStringExtra("STUDENT_ID")
+
         val student = studentRepository.getStudentById(studentId)
 
-        student?.let {
-            // הצגת פרטי הסטודנט
-            findViewById<TextView>(R.id.nameText).text = it.name
-            findViewById<TextView>(R.id.idText).text = it.id
-            findViewById<TextView>(R.id.phoneText).text = it.phone
-            findViewById<TextView>(R.id.addressText).text = it.address
-            findViewById<CheckBox>(R.id.detailsCheckBox).isChecked = it.isChecked
+        if (student != null) {  // אם הסטודנט נמצא, נמלא את הפרטים שלו במסך
+            findViewById<TextView>(R.id.nameText).text = student.name
+            findViewById<TextView>(R.id.idText).text = student.id
+            findViewById<TextView>(R.id.phoneText).text = student.phone
+            findViewById<TextView>(R.id.addressText).text = student.address
+            findViewById<CheckBox>(R.id.detailsCheckBox).isChecked = student.isChecked
 
-            // הגדרת כפתור לעריכת הסטודנט
+            // כפתור עריכה - אם נלחץ, נפתח את מסך העריכה של הסטודנט
             findViewById<Button>(R.id.editButton).setOnClickListener {
-                val intent = Intent(this, editStudentActivity::class.java).apply {
-                    putExtra("STUDENT_ID", it.id)
-                }
+                val intent = Intent(this, editStudentActivity::class.java)
+
+                intent.putExtra("STUDENT_ID", student.id)
+
                 startActivity(intent)
             }
         }
     }
 }
+
+

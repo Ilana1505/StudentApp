@@ -11,6 +11,7 @@ import com.example.studentapp.adapters.StudentAdapter
 import com.example.studentapp.utils.studentRepository
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var studentAdapter: StudentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
+        // יצירת האדפטר עם רשימת הסטודנטים והפונקציה שתרוץ כאשר ייבחר סטודנט
         studentAdapter = StudentAdapter(studentRepository.students) { student ->
             val intent = Intent(this, studentDetailsActivity::class.java)
             intent.putExtra("STUDENT_ID", student.id) // מעביר את מזהה הסטודנט
@@ -26,7 +28,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
+
         recyclerView.adapter = studentAdapter
+
         findViewById<View>(R.id.addStudentButton).setOnClickListener {
             val intent = Intent(this, addStudentActivity::class.java)
             startActivity(intent)
@@ -36,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
-        // עדכון המידע כשהסטודנט נוסף או נערך
+
         studentAdapter.notifyDataSetChanged()
     }
 }
